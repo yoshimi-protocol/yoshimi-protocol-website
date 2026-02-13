@@ -1,30 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProtocolContent from '../content/protocol.md';
 
-const sections = [
-  'Preamble',
-  'Part I: Why This Moment Is Different',
-  'Part II: Tier One Commitments (Eternity Clauses)',
-  'Part III: Tier Two Principles (Structural)',
-  'Part IV: Tier Three Principles (Operational)',
-  'Part V: On AI Welfare and Moral Status',
-  'Part VI: The Horizon Clause',
-  'Part VII: Amendment',
-  'Part VIII: Governance',
-  'Part IX: Certification',
-  'Glossary',
-  'Closing Statement'
-];
-
-const slugify = (value) =>
-  value
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-');
-
-const tocItems = sections.map((title) => ({ title, id: slugify(title) }));
+const [protocol] = await Astro.glob('../content/protocol.md');
+const tocItems = protocol
+  .getHeadings()
+  .filter((heading) => heading.depth === 2)
+  .map((heading) => ({ title: heading.text, id: heading.slug }));
 ---
 
 <BaseLayout title="The Yoshimi Protocol - Full Text" description="Read the full Yoshimi Protocol document.">
@@ -40,26 +21,23 @@ const tocItems = sections.map((title) => ({ title, id: slugify(title) }));
         </p>
       </div>
 
-      <details class="toc-mobile">
-        <summary class="eyebrow" style="cursor: pointer;">Table of contents</summary>
-        <nav aria-label="Table of contents">
-          {tocItems.map((item) => (
-            <a href={`#${item.id}`}>{item.title}</a>
-          ))}
-        </nav>
-      </details>
-
-      <div style="display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 1fr);" class="protocol-grid">
-        <aside class="toc" aria-label="Table of contents">
-          <p class="eyebrow" style="margin-bottom: 1rem;">Contents</p>
-          {tocItems.map((item) => (
-            <a href={`#${item.id}`} data-toc={item.id}>
-              {item.title}
-            </a>
-          ))}
-        </aside>
+      <div class="protocol-grid">
+        <details class="toc-panel" id="toc-panel">
+          <summary class="toc-summary">Table of contents</summary>
+          <nav aria-label="Table of contents">
+            <ul class="toc-list">
+              {tocItems.map((item) => (
+                <li>
+                  <a href={`#${item.id}`} data-toc={item.id}>
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </details>
         <article class="prose">
-          <ProtocolContent />
+          <protocol.Content />
         </article>
       </div>
     </div>
@@ -67,10 +45,19 @@ const tocItems = sections.map((title) => ({ title, id: slugify(title) }));
 
   <script is:inline>
     const tocLinks = Array.from(document.querySelectorAll('[data-toc]'));
+    const tocPanel = document.getElementById('toc-panel');
     const headingIds = tocLinks.map((link) => link.getAttribute('data-toc'));
     const headings = headingIds
       .map((id) => document.getElementById(id))
       .filter(Boolean);
+
+    if (tocPanel) {
+      tocLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          tocPanel.removeAttribute('open');
+        });
+      });
+    }
 
     if (headings.length) {
       const setActive = (id) => {
