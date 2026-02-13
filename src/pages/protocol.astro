@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProtocolContent from '../content/protocol.md';
+
+const sections = [
+  'Preamble',
+  'Part I: Why This Moment Is Different',
+  'Part II: Tier One Commitments (Eternity Clauses)',
+  'Part III: Tier Two Principles (Structural)',
+  'Part IV: Tier Three Principles (Operational)',
+  'Part V: On AI Welfare and Moral Status',
+  'Part VI: The Horizon Clause',
+  'Part VII: Amendment',
+  'Part VIII: Governance',
+  'Part IX: Certification',
+  'Glossary',
+  'Closing Statement'
+];
+
+const slugify = (value) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+
+const tocItems = sections.map((title) => ({ title, id: slugify(title) }));
+---
+
+<BaseLayout title="The Yoshimi Protocol - Full Text" description="Read the full Yoshimi Protocol document.">
+  <section class="section-padding">
+    <div class="container-xl" style="display: grid; gap: 2rem;">
+      <div>
+        <p class="eyebrow">Protocol document</p>
+        <h1 class="display" style="font-size: clamp(2.6rem, 5vw, 4rem); margin: 0 0 1rem;">
+          The Yoshimi Protocol
+        </h1>
+        <p style="max-width: 42rem; color: var(--color-muted);">
+          A long-form framework for ethical AI development, ratified by the community and maintained in public.
+        </p>
+      </div>
+
+      <details class="toc-mobile">
+        <summary class="eyebrow" style="cursor: pointer;">Table of contents</summary>
+        <nav aria-label="Table of contents">
+          {tocItems.map((item) => (
+            <a href={`#${item.id}`}>{item.title}</a>
+          ))}
+        </nav>
+      </details>
+
+      <div style="display: grid; gap: 2.5rem; grid-template-columns: minmax(0, 1fr);" class="protocol-grid">
+        <aside class="toc" aria-label="Table of contents">
+          <p class="eyebrow" style="margin-bottom: 1rem;">Contents</p>
+          {tocItems.map((item) => (
+            <a href={`#${item.id}`} data-toc={item.id}>
+              {item.title}
+            </a>
+          ))}
+        </aside>
+        <article class="prose">
+          <ProtocolContent />
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const tocLinks = Array.from(document.querySelectorAll('[data-toc]'));
+    const headingIds = tocLinks.map((link) => link.getAttribute('data-toc'));
+    const headings = headingIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (headings.length) {
+      const setActive = (id) => {
+        tocLinks.forEach((link) => {
+          link.classList.toggle('active', link.getAttribute('data-toc') === id);
+        });
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActive(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: '-30% 0px -60% 0px', threshold: 0.1 }
+      );
+
+      headings.forEach((heading) => observer.observe(heading));
+      setActive(headings[0].id);
+    }
+  </script>
+</BaseLayout>

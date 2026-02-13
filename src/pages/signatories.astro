@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { repoUrl } from '../data/site';
+import signatories from '../data/signatories.json';
+
+const sortedSignatories = [...signatories].sort((a, b) => (a.date < b.date ? 1 : -1));
+const tiers = ['acknowledged', 'compliant', 'verified'];
+---
+
+<BaseLayout title="Yoshimi Protocol Signatories" description="Public signatory list for the Yoshimi Protocol.">
+  <section class="section-padding">
+    <div class="container-xl">
+      <p class="eyebrow">Public signatory list</p>
+      <h1 class="display" style="font-size: clamp(2.6rem, 5vw, 4rem); margin: 0 0 1rem;">Signatories</h1>
+      <p style="max-width: 42rem; color: var(--color-muted);">
+        Every name below is a public pledge to uphold the Yoshimi Protocol. To sign, fork the repo, add yourself to
+        the JSON file, and open a pull request.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0 2rem;">
+        <a class="button-primary" href={repoUrl} rel="noreferrer">Go to GitHub</a>
+        <a class="button-secondary" href={`${repoUrl}/blob/main/CONTRIBUTING.md`} rel="noreferrer">
+          Sign-on instructions
+        </a>
+      </div>
+
+      <div class="card" style="margin-bottom: 2rem;">
+        <label class="eyebrow" for="tier-filter" style="display: block; margin-bottom: 0.75rem;">
+          Filter by tier
+        </label>
+        <select id="tier-filter" style="background: transparent; border: 1px solid rgba(244, 240, 230, 0.2); color: inherit; padding: 0.6rem 0.8rem; border-radius: 0.75rem;">
+          <option value="all">All tiers</option>
+          {tiers.map((tier) => (
+            <option value={tier}>{tier}</option>
+          ))}
+        </select>
+      </div>
+
+      <div class="signatory-grid" id="signatory-grid">
+        {sortedSignatories.map((sig) => (
+          <article class="card" data-tier={sig.tier}>
+            <span class="tag">{sig.tier}</span>
+            <h2 style="margin: 1rem 0 0.5rem; font-size: 1.3rem;">{sig.name}</h2>
+            <p style="margin: 0; color: var(--color-muted);">{sig.organization}</p>
+            <p style="margin: 0.6rem 0 0; font-family: var(--font-mono); font-size: 0.85rem;">
+              <a href={`https://github.com/${sig.github}`} rel="noreferrer">@{sig.github}</a>
+            </p>
+            {sig.project && <p style="margin-top: 0.8rem;">Project: {sig.project}</p>}
+            <p style="margin-top: 1rem; color: var(--color-muted); font-size: 0.85rem;">Signed {sig.date}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const filter = document.getElementById('tier-filter');
+    const cards = Array.from(document.querySelectorAll('[data-tier]'));
+
+    filter?.addEventListener('change', (event) => {
+      const value = event.target.value;
+      cards.forEach((card) => {
+        const matches = value === 'all' || card.getAttribute('data-tier') === value;
+        card.style.display = matches ? '' : 'none';
+      });
+    });
+  </script>
+</BaseLayout>

@@ -1,17 +1,169 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { repoUrl } from '../data/site';
 
+const marqueeItems = [
+  'Human-first design',
+  'Transparent oversight',
+  'Accountability over hype',
+  'Safety as culture',
+  'Community governance',
+  'Build for us, not against us'
+];
+const marqueeLoop = [...marqueeItems, ...marqueeItems];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <section class="section-padding">
+    <div class="container-xl">
+      <p class="eyebrow">Community-ratified framework</p>
+      <div class="hero-grid">
+        <div>
+          <h1 class="display" style="font-size: clamp(3rem, 7vw, 5.5rem); margin: 0 0 1rem;">
+            The Yoshimi Protocol
+          </h1>
+          <p style="max-width: 38rem; color: var(--color-muted); font-size: 1.1rem;">
+            A community-ratified framework for AI developers who want the world to know they are building for us,
+            not against us.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem;">
+            <a class="button-primary" href="/protocol">Read the Protocol</a>
+            <a class="button-secondary" href="#sign">Sign the Protocol</a>
+          </div>
+        </div>
+        <div class="card" style="margin-top: 2rem;">
+          <p class="eyebrow">What it is</p>
+          <p style="font-size: 1.05rem; margin-top: 1rem;">
+            The Yoshimi Protocol is a public pledge to build ethical AI. It outlines non-negotiable commitments,
+            structural principles, and operational practices that keep humans at the center of intelligent systems.
+          </p>
+          <p style="color: var(--color-muted); margin-top: 1rem;">
+            This is a living document. The community governs its evolution, and every signature is a promise to uphold
+            it in public.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {marqueeLoop.map((item) => (
+        <span>{item}</span>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-padding" id="origin">
+    <div class="container-xl" style="display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+      <div>
+        <p class="eyebrow">Why Yoshimi?</p>
+        <h2 class="display" style="font-size: clamp(2.2rem, 4vw, 3.6rem); margin: 0;">A warrior against the machine.</h2>
+      </div>
+      <div>
+        <p>
+          Yoshimi is the name we give to the human will that keeps technology aligned with our shared values.
+          A warrior facing a wave of pink robots, choosing courage and care over convenience.
+        </p>
+        <p style="color: var(--color-muted);">
+          The Protocol keeps that spirit alive. It is a reminder that AI development is a moral act, and that every
+          system should be built as if real lives depend on it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding" id="principles">
+    <div class="container-xl">
+      <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; align-items: flex-end;">
+        <div>
+          <p class="eyebrow">Five core principles</p>
+          <h2 class="display" style="font-size: clamp(2.1rem, 4vw, 3.2rem); margin: 0;">A shared ethical baseline.</h2>
+        </div>
+        <a class="button-secondary" href="/protocol">Read full text</a>
+      </div>
+      <div style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 2.5rem;">
+        <div class="card">
+          <h3 class="display" style="font-size: 1.4rem; margin-top: 0;">Human Sovereignty</h3>
+          <p>AI serves people and communities. It never supersedes human agency or dignity.</p>
+        </div>
+        <div class="card">
+          <h3 class="display" style="font-size: 1.4rem; margin-top: 0;">Transparent Power</h3>
+          <p>Development and deployment are visible, auditable, and accountable to the public.</p>
+        </div>
+        <div class="card">
+          <h3 class="display" style="font-size: 1.4rem; margin-top: 0;">Structural Safety</h3>
+          <p>Safety is engineered into the system, not patched on after launch.</p>
+        </div>
+        <div class="card">
+          <h3 class="display" style="font-size: 1.4rem; margin-top: 0;">Operational Care</h3>
+          <p>Day-to-day practices prioritize human well-being, privacy, and fairness.</p>
+        </div>
+        <div class="card">
+          <h3 class="display" style="font-size: 1.4rem; margin-top: 0;">Shared Horizon</h3>
+          <p>We align on long-term outcomes, preventing runaway incentives and harm.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding" id="tiers">
+    <div class="container-xl">
+      <p class="eyebrow">Certification tiers</p>
+      <h2 class="display" style="font-size: clamp(2.2rem, 4vw, 3.4rem); margin: 0 0 2rem;">Meet the pledge.</h2>
+      <div style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+        <div class="card">
+          <h3 class="display" style="font-size: 1.5rem; margin-top: 0;">Acknowledged</h3>
+          <p>A public statement of intent. You recognize the Protocol and commit to its direction.</p>
+        </div>
+        <div class="card card-highlight">
+          <h3 class="display" style="font-size: 1.5rem; margin-top: 0;">Compliant</h3>
+          <p>The sweet spot. Your systems meet the Protocol requirements and you publish proof.</p>
+        </div>
+        <div class="card">
+          <h3 class="display" style="font-size: 1.5rem; margin-top: 0;">Verified</h3>
+          <p>Independent assessment confirms your compliance and ongoing governance.</p>
+        </div>
+      </div>
+      <p style="color: var(--color-muted); margin-top: 1.5rem;">Badge assets - Coming soon.</p>
+    </div>
+  </section>
+
+  <section class="section-padding" id="sign">
+    <div class="container-xl" style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: center;">
+      <div>
+        <p class="eyebrow">Sign the Protocol</p>
+        <h2 class="display" style="font-size: clamp(2.2rem, 4vw, 3.6rem); margin: 0;">Make your pledge in public.</h2>
+      </div>
+      <div class="card">
+        <p style="margin-top: 0;">
+          Signing the Yoshimi Protocol is a public act. Fork the repo, add your name, open a pull request.
+        </p>
+        <p style="color: var(--color-muted);">
+          No hidden databases. No data collection. Full transparency, with you in control of what you share.
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;">
+          <a class="button-primary" href={repoUrl} rel="noreferrer">Go to GitHub</a>
+          <a class="button-secondary" href={`${repoUrl}/blob/main/CONTRIBUTING.md`} rel="noreferrer">
+            Read sign-on steps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding" id="open-source">
+    <div class="container-xl" style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+      <div>
+        <p class="eyebrow">Open source</p>
+        <h2 class="display" style="font-size: clamp(2rem, 4vw, 3.2rem); margin: 0;">The community owns this.</h2>
+      </div>
+      <div>
+        <p>
+          The Protocol text is released under CC0 1.0 Universal. The website code is MIT licensed.
+          That means everyone can reuse, remix, and improve it - in public.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
