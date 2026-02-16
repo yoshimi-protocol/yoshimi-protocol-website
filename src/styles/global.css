@@ -316,6 +316,8 @@ a:hover {
 	border-radius: 1rem;
 	background: rgba(15, 17, 26, 0.85);
 	padding: 0.75rem 1rem;
+	width: 100%;
+	max-width: 72ch;
 }
 
 .toc-summary {
@@ -346,7 +348,7 @@ a:hover {
 
 .toc-list {
 	list-style: disc;
-	padding-left: 1.25rem;
+	padding: 0.35rem 1.25rem 0.85rem;
 	margin: 1rem 0 0;
 	max-height: 0;
 	overflow: hidden;
@@ -354,7 +356,9 @@ a:hover {
 }
 
 .toc-panel[open] .toc-list {
-	max-height: 1200px;
+	max-height: 60vh;
+	overflow-y: auto;
+	overscroll-behavior: contain;
 }
 
 .toc-list li {
@@ -368,6 +372,44 @@ a:hover {
 
 .toc-list a.active {
 	color: var(--color-amber);
+}
+
+.references-panel {
+	border: 1px solid rgba(244, 240, 230, 0.12);
+	border-radius: 1rem;
+	background: rgba(15, 17, 26, 0.55);
+	padding: 0.75rem 1rem;
+}
+
+.references-summary {
+	cursor: pointer;
+	font-family: var(--font-mono);
+	text-transform: uppercase;
+	letter-spacing: 0.18em;
+	font-size: 0.75rem;
+	color: var(--color-muted);
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.references-summary::-webkit-details-marker {
+	display: none;
+}
+
+.references-summary::after {
+	content: '▾';
+	font-size: 0.9rem;
+	transition: transform 0.2s ease;
+}
+
+.references-panel[open] .references-summary::after {
+	transform: rotate(180deg);
+}
+
+.references-content {
+	margin-top: 1rem;
 }
 
 .signatory-grid {

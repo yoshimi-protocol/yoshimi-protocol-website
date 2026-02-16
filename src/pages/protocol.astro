@@ -1,11 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import referencesRaw from '../content/references.md?raw';
 
 const [protocol] = await Astro.glob('../content/protocol.md');
 const tocItems = protocol
   .getHeadings()
   .filter((heading) => heading.depth === 2)
   .map((heading) => ({ title: heading.text, id: heading.slug }));
+
+const tocEntries = [...tocItems, { title: 'References', id: 'references' }];
+const references = referencesRaw
+  .split(/\n\s*\n/)
+  .map((block) => block.trim())
+  .filter(Boolean)
+  .map((block) => {
+    const merged = block.replace(/\s*\n\s*/g, ' ');
+    const cleaned = merged.replace(/^[\s\d\u00B9\u00B2\u00B3\u2070-\u2079]+/, '').trim();
+    const html = cleaned.replace(/https?:\/\/[^\s—]+/g, (url) =>
+      `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+    );
+
+    return { html };
+  });
 ---
 
 <BaseLayout title="The Yoshimi Protocol - Full Text" description="Read the full Yoshimi Protocol document.">
@@ -26,7 +42,7 @@ const tocItems = protocol
           <summary class="toc-summary">Table of contents</summary>
           <nav aria-label="Table of contents">
             <ul class="toc-list">
-              {tocItems.map((item) => (
+              {tocEntries.map((item) => (
                 <li>
                   <a href={`#${item.id}`} data-toc={item.id}>
                     {item.title}
@@ -38,6 +54,17 @@ const tocItems = protocol
         </details>
         <article class="prose">
           <protocol.Content />
+          <hr />
+          <details class="references-panel" id="references-panel">
+            <summary class="references-summary" id="references">References</summary>
+            <div class="references-content">
+              <ol class="references-list">
+                {references.map((reference) => (
+                  <li set:html={reference.html} />
+                ))}
+              </ol>
+            </div>
+          </details>
         </article>
       </div>
     </div>
@@ -52,8 +79,13 @@ const tocItems = protocol
       .filter(Boolean);
 
     if (tocPanel) {
+      const referencesPanel = document.getElementById('references-panel');
+
       tocLinks.forEach((link) => {
         link.addEventListener('click', () => {
+          if (link.getAttribute('data-toc') === 'references' && referencesPanel) {
+            referencesPanel.setAttribute('open', '');
+          }
           tocPanel.removeAttribute('open');
         });
       });
