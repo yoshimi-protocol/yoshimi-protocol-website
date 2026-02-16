@@ -14,5 +14,9 @@
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "@axe-core/cli": "^4.11.1",
+    "pa11y": "^9.1.0"
   }
 }

@@ -5,7 +5,7 @@ import referencesRaw from '../content/references.md?raw';
 const [protocol] = await Astro.glob('../content/protocol.md');
 const tocItems = protocol
   .getHeadings()
-  .filter((heading) => heading.depth === 2)
+  .filter((heading) => heading.depth === 3)
   .map((heading) => ({ title: heading.text, id: heading.slug }));
 
 const tocEntries = [...tocItems, { title: 'References', id: 'references' }];
@@ -17,7 +17,7 @@ const references = referencesRaw
     const merged = block.replace(/\s*\n\s*/g, ' ');
     const cleaned = merged.replace(/^[\s\d\u00B9\u00B2\u00B3\u2070-\u2079]+/, '').trim();
     const html = cleaned.replace(/https?:\/\/[^\s—]+/g, (url) =>
-      `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+      `<a href="${url}" target="_blank" rel="noopener noreferrer" aria-label="${url} (opens in new tab)">${url}</a>`
     );
 
     return { html };
@@ -39,9 +39,9 @@ const references = referencesRaw
 
       <div class="protocol-grid">
         <details class="toc-panel" id="toc-panel">
-          <summary class="toc-summary">Table of contents</summary>
+          <summary class="toc-summary" id="toc-summary" aria-controls="toc-list">Table of contents</summary>
           <nav aria-label="Table of contents">
-            <ul class="toc-list">
+            <ul class="toc-list" id="toc-list">
               {tocEntries.map((item) => (
                 <li>
                   <a href={`#${item.id}`} data-toc={item.id}>
@@ -79,6 +79,8 @@ const references = referencesRaw
       .filter(Boolean);
 
     if (tocPanel) {
+      const tocSummary = document.getElementById('toc-summary');
+      const tocFocusable = () => [tocSummary, ...tocLinks].filter(Boolean);
       const referencesPanel = document.getElementById('references-panel');
 
       tocLinks.forEach((link) => {
@@ -88,6 +90,47 @@ const references = referencesRaw
           }
           tocPanel.removeAttribute('open');
         });
+      });
+
+      tocPanel.addEventListener('toggle', () => {
+        if (tocPanel.open) {
+          tocLinks[0]?.focus();
+        } else {
+          tocSummary?.focus();
+        }
+      });
+
+      tocPanel.addEventListener('keydown', (event) => {
+        if (!tocPanel.open) {
+          return;
+        }
+
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          tocPanel.removeAttribute('open');
+          tocSummary?.focus();
+          return;
+        }
+
+        if (event.key !== 'Tab') {
+          return;
+        }
+
+        const focusable = tocFocusable();
+        if (!focusable.length) {
+          return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       });
     }
 

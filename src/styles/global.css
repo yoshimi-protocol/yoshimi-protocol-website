@@ -32,13 +32,64 @@ body.site-body {
 	line-height: 1.6;
 }
 
+.skip-link {
+	position: absolute;
+	left: -999px;
+	top: 1rem;
+	background: #ffffff;
+	color: #0a0a0f;
+	padding: 0.75rem 1rem;
+	border-radius: 999px;
+	text-decoration: underline;
+	z-index: 100;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+	left: 1rem;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
 a {
 	color: inherit;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.2em;
+}
+
+a:not(.button-primary):not(.button-secondary):not(.logo) {
+	text-decoration-color: rgba(244, 240, 230, 0.7);
+}
+
+a.button-primary,
+a.button-secondary,
+a.logo {
 	text-decoration: none;
 }
 
 a:hover {
 	color: var(--color-amber);
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+	outline: 2px solid var(--color-amber);
+	outline-offset: 3px;
 }
 
 .site-shell {
@@ -162,6 +213,13 @@ a:hover {
 	letter-spacing: 0.12em;
 }
 
+.nav-links a,
+.footer-links a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+}
+
 .site-footer {
 	border-top: 1px solid rgba(244, 240, 230, 0.08);
 	padding: 3rem 0 4rem;
@@ -214,6 +272,11 @@ a:hover {
 	letter-spacing: 0.2em;
 	font-size: 0.75rem;
 	color: var(--color-muted);
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+	animation-play-state: paused;
 }
 
 .marquee-track span {
@@ -330,6 +393,7 @@ a:hover {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	min-height: 44px;
 }
 
 .toc-summary::after {
@@ -368,6 +432,9 @@ a:hover {
 .toc-list a {
 	color: var(--color-muted);
 	font-size: 0.9rem;
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
 }
 
 .toc-list a.active {
@@ -392,6 +459,7 @@ a:hover {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	min-height: 44px;
 }
 
 .references-summary::-webkit-details-marker {
@@ -432,6 +500,10 @@ a:hover {
 	color: var(--color-amber);
 }
 
+select {
+	min-height: 44px;
+}
+
 @media (max-width: 768px) {
 	.header-inner {
 		flex-direction: column;
@@ -448,6 +520,15 @@ a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
 	.marquee-track {
 		animation: none;
 	}

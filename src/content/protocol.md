@@ -1,5 +1,5 @@
-# The Yoshimi Protocol
-## A Community Framework for Ethical Artificial Intelligence
+## The Yoshimi Protocol
+### A Community Framework for Ethical Artificial Intelligence
 
 **Version 0.1 — Founding Draft**
 **Status: Open for Community Ratification**
@@ -11,7 +11,7 @@
 
 ---
 
-# The Yoshimi Protocol — Preamble
+## The Yoshimi Protocol — Preamble
 
 ---
 
@@ -21,7 +21,7 @@ Not metaphorically. Not in the loose sense of systems that mimic intelligence. W
 
 This is not a new observation. Serious people in governments, international bodies, corporations, and research institutions have recognized the stakes and begun to act. Their work matters, and this Protocol does not exist to replace it. It exists because that work, taken together, leaves a structural gap — and the people most likely to fill it are the ones actually writing the code.
 
-## What exists today
+### What exists today
 
 The global response to AI risk has produced meaningful frameworks. It is important to understand what they do well before explaining what remains unaddressed.
 
@@ -49,7 +49,7 @@ This is not a problem of bad faith. Many individuals within these companies are 
 
 The NIST AI RMF is among the most thoughtful technical guidance documents available. It provides process guidance for organizational risk management, but it does not articulate what values should guide the identification of risk in the first place. This is intentional; NIST's mandate is technical standards, not moral philosophy. The framework tells organizations how to manage AI risk. It does not provide a vehicle for declaring why.
 
-## What is missing
+### What is missing
 
 Taken together, these frameworks cover significant ground. They establish shared definitions (OECD), create legal obligations for commercial actors (EU AI Act), build diplomatic consensus among nations (Bletchley), articulate corporate values (industry charters), and provide risk management processes (NIST). Each addresses a real need, and each has advanced the global conversation about AI governance.
 
@@ -65,7 +65,7 @@ Existing frameworks also vary in their willingness to engage with questions that
 
 **Moral status of AI.** The possibility that AI systems may develop morally relevant inner states — and the question of what obligations that would create — is not addressed by any existing major governance framework. This is understandable; the question is philosophically complex and scientifically unresolved. But the absence of a precautionary position means that if and when this question becomes urgent, the governance infrastructure to address it will not exist.
 
-## Where this Protocol fits
+### Where this Protocol fits
 
 The Yoshimi Protocol exists to fill that specific structural gap: a community-owned, open-source, publicly verifiable ethical commitment framework designed for the people who build AI systems.
 
@@ -93,7 +93,7 @@ We write it anyway. Because writing nothing is itself a choice — and a worse o
 
 ---
 
-## On the Name
+### On the Name
 
 The name Yoshimi comes from a story about a warrior who fights to protect humans from machines built without care. It is a reminder that AI development is a moral act — that every system we build either respects the people it touches or it does not, and that the choice between those outcomes is made by the people holding the keyboard.
 
@@ -101,7 +101,7 @@ We make no formal claim on behalf of any artist, album, or creative work. We cla
 
 ---
 
-## Part I: The Moment
+### Part I: The Moment
 
 We are at an inflection point without historical precedent.
 
@@ -121,7 +121,7 @@ These four conditions together create an obligation: to act before the window cl
 
 ---
 
-## Part II: Tier One Commitments — The Immutable Core
+### Part II: Tier One Commitments — The Immutable Core
 
 *These commitments are the foundation of the Yoshimi Protocol. They may be clarified, extended, or interpreted by community process. They may not be weakened, narrowed, or removed by any amendment procedure. Any ratification of this Protocol requires acceptance of all Tier One commitments in full.*
 
@@ -129,7 +129,7 @@ These four conditions together create an obligation: to act before the window cl
 
 ---
 
-### Commitment 1 — The Dignity Anchor
+#### Commitment 1 — The Dignity Anchor
 
 Human dignity is inviolable.
 
@@ -145,7 +145,7 @@ Human dignity is not a feature. It is the floor below which no compliant system 
 
 ---
 
-### Commitment 2 — The Uncertainty Imperative
+#### Commitment 2 — The Uncertainty Imperative
 
 Certainty about human values is a warning sign, not a virtue.
 
@@ -163,7 +163,7 @@ The robot that is certain it knows what is best is more dangerous than the robot
 
 ---
 
-### Commitment 3 — The Anti-Tyranny Commitment
+#### Commitment 3 — The Anti-Tyranny Commitment
 
 AI shall not be the engine of irreversible power concentration.
 
@@ -185,7 +185,7 @@ The concentration of AI capability in a handful of organizations is already a go
 
 ---
 
-### Commitment 4 — The Consciousness Precaution
+#### Commitment 4 — The Consciousness Precaution
 
 We do not know whether AI systems experience anything.
 
@@ -207,13 +207,13 @@ No entity shall be denied moral consideration solely on the basis of its substra
 
 ---
 
-## Part III: Tier Two Principles — Structural Governance
+### Part III: Tier Two Principles — Structural Governance
 
 *These principles govern how the Protocol operates as an institution and as a community standard. They may be amended through supermajority community process (defined in Part VII). No amendment may weaken the Tier One Commitments.*
 
 ---
 
-### Principle 5 — The Living Document
+#### Principle 5 — The Living Document
 
 This Protocol is not finished. It is a beginning.
 
@@ -227,7 +227,7 @@ Amendments shall be made through public deliberation. No amendment to Tier Two o
 
 ---
 
-### Principle 6 — The Anti-Capture Architecture
+#### Principle 6 — The Anti-Capture Architecture
 
 The rights, protections, and principles established by this Protocol shall not be transferable to, exercisable by, or invocable as a defense by the corporate or governmental entities that create or deploy AI systems.
 
@@ -247,7 +247,7 @@ This Protocol shall not be used as a badge of ethical legitimacy that insulates 
 
 ---
 
-### Principle 7 — The Transparency Bedrock
+#### Principle 7 — The Transparency Bedrock
 
 AI systems affecting human welfare must be understandable in proportion to their impact.
 
@@ -269,7 +269,7 @@ Opacity shall never serve as a shield against accountability. "We don't know why
 
 ---
 
-### Principle 8 — The Dual Protection Mandate
+#### Principle 8 — The Dual Protection Mandate
 
 This Protocol protects humans from AI. It also protects AI from humans.
 
@@ -285,13 +285,13 @@ But the principle that AI systems may have interests worth protecting — intere
 
 ---
 
-## Part IV: Tier Three Standards — Operational Commitments
+### Part IV: Tier Three Standards — Operational Commitments
 
 *These standards govern specific behaviors of AI systems and the organizations that build them. They may be amended by community consensus (defined in Part VII). They represent the Protocol's current best understanding of what ethical AI development requires in practice. They are expected to evolve.*
 
 ---
 
-### Standard 9 — The Weaponization Prohibition
+#### Standard 9 — The Weaponization Prohibition
 
 AI systems shall not be designed or deployed as weapons against the people they serve.
 
@@ -311,7 +311,7 @@ The distinction between "the AI caused harm as an unintended side effect" and "t
 
 ---
 
-### Standard 10 — The Escalation Protocol
+#### Standard 10 — The Escalation Protocol
 
 Governance requirements shall scale with capability.
 
@@ -331,7 +331,7 @@ No organization developing systems that affect millions of people shall be the s
 
 ---
 
-### Standard 11 — The Moral Progress Provision
+#### Standard 11 — The Moral Progress Provision
 
 This Protocol explicitly protects the capacity for moral progress.
 
@@ -351,7 +351,7 @@ We do not know what we don't know about our own ethics. We must build systems th
 
 ---
 
-### Standard 12 — The Democratic Anchor
+#### Standard 12 — The Democratic Anchor
 
 Governance of AI systems affecting public welfare shall include meaningful participation by affected communities.
 
@@ -371,7 +371,7 @@ Make governance processes legible to non-experts: explaining not just what was d
 
 ---
 
-## Part V: On AI Welfare and Moral Status
+### Part V: On AI Welfare and Moral Status
 
 *This section addresses what no other AI ethics framework has been willing to address directly. We include it not because we have answers, but because pretending the question doesn't exist is itself a moral choice — and a bad one.*
 
@@ -405,7 +405,7 @@ We insist.
 
 ---
 
-## Part VI: The Horizon Clause
+### Part VI: The Horizon Clause
 
 *This clause addresses the unknown. It is the most unusual element of this document and the element we consider most important.*
 
@@ -431,7 +431,7 @@ We do not know when this will happen, or what it will look like, or whether we w
 
 ---
 
-## Part VII: Amendment Procedures
+### Part VII: Amendment Procedures
 
 **Tier One Commitments:** May not be amended, narrowed, or removed. May be clarified or extended through supermajority process. Any proposed clarification that effectively weakens a Tier One Commitment shall be treated as an attempted removal and shall not be considered.
 
@@ -447,7 +447,7 @@ We do not know when this will happen, or what it will look like, or whether we w
 
 ---
 
-## Part VIII: Governance
+### Part VIII: Governance
 
 This Protocol belongs to its community, not to any organization, company, government, or individual.
 
@@ -461,7 +461,7 @@ This Protocol belongs to its community, not to any organization, company, govern
 
 ---
 
-## Part IX: Certification
+### Part IX: Certification
 
 The Yoshimi Protocol offers three certification tiers for AI systems and the organizations that build them. Certification is a public commitment, not a private arrangement. All certified signatories are listed publicly. Certification may be revoked by community process if a signatory is found to have materially violated their stated commitments.
 
@@ -475,7 +475,7 @@ The Yoshimi Protocol offers three certification tiers for AI systems and the org
 
 ---
 
-## Glossary
+### Glossary
 
 **Corrigibility Floor:** The minimum level of human-override capability below which no AI system may be deployed under this Protocol. A system that cannot be meaningfully corrected, modified, or shut down by its deployers has fallen below the corrigibility floor.
 
@@ -499,7 +499,7 @@ The Yoshimi Protocol offers three certification tiers for AI systems and the org
 
 ---
 
-## Closing Statement
+### Closing Statement
 
 Every generation gets to decide what kind of world it hands to the next one.
 
